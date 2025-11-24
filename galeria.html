@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería | Boxeador</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Zalando Sans Expanded', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Barra de navegación */
+    .navegacion {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .navegacion a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .navegacion a:hover {
+      opacity: 0.7;
+    }
+
+    main {
+      margin-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Contenedores de imágenes */
+    section.contenedor {
+      background-color: #111;
+      border: 1px solid #444;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      max-width: 600px;
+      width: 90%;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .titulo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .imagen {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .texto {
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      .navegacion {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navegacion">
+    <a href="index.html">Portada</a> 
+    <a href="acerca.html">Acerca de</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="tabla.html">Precios</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h1>Galería de Clases</h1>
+
+    <section class="contenedor">
+      <div class="titulo">Clase Colectiva 🥊</div>
+      <img src="clase1.jpg" alt="Foto de clase personal de boxeo" class="imagen">
+      <div class="texto">Una imagen de una clase personal, mostrando técnica y entrenamiento individualizado.</div>
+    </section>
+
+    <section class="contenedor">
+      <div class="titulo">Clase Personal 💥</div>
+      <img src="clase2.png" alt="Foto de clase colectiva de boxeo" class="imagen">
+      <div class="texto">Una imagen de una clase colectiva, mostrando dinamismo y trabajo en equipo.</div>
+    </section>
+
+  </main>
+<!-- ✨ Efecto de aparición al hacer scroll -->
+    <script>
+      const fadeElements = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
+
+
+
+
+</body>
+</html>

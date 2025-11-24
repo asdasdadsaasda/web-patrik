@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Precios | Boxeador</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Zalando Sans Expanded', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Barra de navegación */
+    .navegacion {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .navegacion a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .navegacion a:hover {
+      opacity: 0.7;
+    }
+
+    main {
+      margin-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Tabla de precios */
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #222;
+      font-weight: 600;
+    }
+
+    td {
+      background-color: #111;
+    }
+
+    tr:hover td {
+      background-color: #222;
+      transition: 0.3s;
+    }
+
+    .nota {
+      font-size: 0.85rem;
+      color: #aaa;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    @media (max-width: 600px) {
+      .navegacion {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navegacion">
+    <a href="index.html">Portada</a> 
+    <a href="acerca.html">Acerca de</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="tabla.html">Precios</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h1>Tabla de Precios</h1>
+
+    <table>
+      <tr>
+        <th>Tipo de Clase</th>
+        <th>Duración</th>
+        <th>Precio por Clase</th>
+        <th>Paquete Mensual</th>
+      </tr>
+      <tr>
+        <td>Clase Personal</td>
+        <td>1 hora</td>
+        <td>25 €</td>
+        <td>200 € (10 clases)</td>
+      </tr>
+      <tr>
+        <td>Clase Colectiva</td>
+        <td>1 hora</td>
+        <td>15 €</td>
+        <td>120 € (10 clases)</td>
+      </tr>
+      <tr>
+        <td>Clase Personal Intensiva</td>
+        <td>1,5 horas</td>
+        <td>35 €</td>
+        <td>300 € (10 clases)</td>
+      </tr>
+      <tr>
+        <td>Clase Colectiva Intensiva</td>
+        <td>1,5 horas</td>
+        <td>20 €</td>
+        <td>160 € (10 clases)</td>
+      </tr>
+    </table>
+
+    <p class="nota">Todos los precios incluyen IVA y las clases tienen una duración de 1 hora, salvo indicación de clase intensiva.</p>
+
+  </main>
+
+</body>
+</html>

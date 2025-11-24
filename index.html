@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrik's Ring.</title>
+    <link rel="icon" type="image/png" href="ptq.jpeg">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="fade-in">
+      <h1 id="bienvenida" style="color: white;">¡Bienvenidos a mi Ring!</h1>
+      <button id="modo-btn">Modo oscuro</button>
+    </header>
+
+    <img src="ptq.jpeg" width="400px" height="400px" class="fade-in">
+
+    <nav class="navegacion fade-in">
+        <button id="menu-toggle" class="hamburguesa">☰</button>
+        <ul id="menu-list" class="oculto">
+          <li><a href="index.html">Portada</a></li> 
+          <li><a href="acerca.html">Acerca de</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="tabla.html">Precios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+ 
+    <section id="color-section" class="fade-in">
+        <p style="color: white;">Pasa el ratón por aquí para cambiar el color de fondo.</p>
+    </section>
+
+    <img src="yo.jpeg" width="400px" height="530px" alt="Patrik" class="fade-in">
+
+    <aside class="fade-in">
+       <ul style="text-align:center; list-style-position: inside;">
+            <li style="color: white;">11 años de experiencia como Boxeador Amateur.</li>
+            <li style="color: white;">Récord de 23-6-3 (KO).</li>
+            <li style="color: white;">Tres veces campeón de España.</li>
+            <li style="color: white;">Dos veces campeón internacional.</li>
+            <li style="color: white;">Miembro del equipo nacional de boxeo.</li>
+        </ul>
+    </aside>
+
+    <footer class="fade-in">
+      <p id="fecha" style="color: white;"></p>
+      <div class="audio-container">
+      </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+
+    <!-- ✨ Efecto de aparición al hacer scroll -->
+    <script>
+      const fadeElements = document.querySelectorAll('.fade-in');
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      fadeElements.forEach(el => observer.observe(el));
+     let datosOriginales = [];
+
+  function cargarDatos() {
+    const mensaje = document.getElementById("mensaje");
+    if (!mensaje) return;
+
+    mensaje.textContent = "Cargando datos...";
+
+    fetch("data.json")
+      .then(res => {
+        if (!res.ok) throw new Error("Error al contactar");
+        return res.json();
+      })
+      .then(data => {
+        datosOriginales = data;
+        mostrarDatos(data);
+        mensaje.textContent = "Datos cargados correctamente.";
+      })
+      .catch(err => {
+        mensaje.textContent = "❌ Error al conectar con el servidor.";
+      });
+  }
+
+  function mostrarDatos(arr) {
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+    arr.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.nombre}: ${item.mensaje}`;
+      lista.appendChild(li);
+    });
+  }
+
+  function filtrar() {
+    const texto = document.getElementById("buscador").value.toLowerCase();
+    const filtrados = datosOriginales.filter(item =>
+      item.nombre.toLowerCase().includes(texto)
+    );
+    mostrarDatos(filtrados);
+  }
+
+  // Evento de búsqueda
+  const buscador = document.getElementById("buscador");
+  if (buscador) {
+    buscador.addEventListener("input", filtrar);
+  }
+
+  // Cargar JSON al entrar
+  cargarDatos();
+    </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contacto | Boxeador</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="style" href="stylesheet.css">
+  <script src="script.js"></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Zalando Sans Expanded', sans-serif;
+      line-height: 1.6;
+    }
+
+    .navegacion {
+      position: fixed; top: 0; left: 0;
+      width: 100%; background-color: #000;
+      border-bottom: 1px solid #333;
+      display: flex; justify-content: center;
+      gap: 40px; padding: 20px 0;
+      z-index: 1000;
+    }
+
+    .navegacion a {
+      color: #fff; text-decoration: none;
+      font-weight: 600; transition: opacity 0.3s;
+    }
+
+    .navegacion a:hover { opacity: 0.7; }
+
+    main {
+      margin-top: 120px;
+      display: flex; flex-direction: column;
+      align-items: center; padding: 20px;
+    }
+
+    h1 { font-size: 2rem; margin-bottom: 40px; text-align: center; }
+
+    .contacto-info, form.contacto-form {
+      background-color: #111;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 25px;
+      width: 90%; max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    form.contacto-form input,
+    form.contacto-form textarea {
+      width: 100%; padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background-color: #000;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .error { border-color: #f33 !important; }
+    .success { border-color: #0f0 !important; }
+
+    .mensaje {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #f66;
+      display: none;
+    }
+
+    .mensaje.mostrar { display: block; }
+
+    .contador { text-align: right; font-size: 0.8rem; color: #aaa; margin-bottom: 10px; }
+
+    form.contacto-form button {
+      background-color: #fff; color: #000;
+      font-weight: 600; border: none;
+      padding: 12px 20px;
+      border-radius: 8px; cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    form.contacto-form button:hover { opacity: 0.8; }
+
+    .alerta {
+      margin-top: 15px; padding: 12px;
+      border-radius: 8px; text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .alerta.exito { background-color: #0f0; color: #000; }
+    .alerta.error { background-color: #f33; color: #fff; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      .navegacion { flex-direction: column; gap: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navegacion">
+    <a href="index.html">Portada</a> 
+    <a href="acerca.html">Acerca de</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="galeria.html">Galería</a>
+    <a href="tabla.html">Precios</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h1>Contacto</h1>
+
+    <form class="contacto-form" id="contactoForm" novalidate>
+      <input type="text" name="nombre" id="nombre" placeholder="Tu nombre *">
+      <div class="mensaje" id="errorNombre">El nombre es obligatorio</div>
+
+      <input type="email" name="email" id="email" placeholder="Tu correo *">
+      <div class="mensaje" id="errorEmail">El correo debe incluir un @ y ser válido</div>
+
+      <textarea name="mensaje" id="mensaje" placeholder="Escribe tu mensaje *" rows="5" maxlength="250"></textarea>
+      <div class="contador" id="contador">0 / 250</div>
+      <div class="mensaje" id="errorMensaje">El mensaje no puede estar vacío</div>
+
+      <button type="submit">Enviar Mensaje</button>
+
+      <div id="alertaFinal"></div>
+    </form>
+
+  </main>
+
+  <script>
+    const form = document.getElementById('contactoForm');
+    const nombre = document.getElementById('nombre');
+    const email = document.getElementById('email');
+    const mensaje = document.getElementById('mensaje');
+    const contador = document.getElementById('contador');
+    const alertaFinal = document.getElementById('alertaFinal');
+
+    function validarEmail(valor) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+    }
+
+    // 🔥 VALIDACIÓN EN TIEMPO REAL DEL EMAIL
+    email.addEventListener("input", () => {   // <-- añadido
+      if (!validarEmail(email.value)) {
+        email.classList.add("error");
+        document.getElementById("errorEmail").classList.add("mostrar");
+      } else {
+        email.classList.remove("error");
+        email.classList.add("success");
+        document.getElementById("errorEmail").classList.remove("mostrar");
+      }
+    });
+
+    // Contador de caracteres
+    mensaje.addEventListener('input', () => {
+      contador.textContent = `${mensaje.value.length} / 250`;
+    });
+
+    // Envío del formulario
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let valido = true;
+
+      // Nombre
+      if (nombre.value.trim() === '') {
+        nombre.classList.add('error');
+        document.getElementById('errorNombre').classList.add('mostrar');
+        valido = false;
+      }
+
+      // Email
+      if (!validarEmail(email.value)) {
+        email.classList.add('error');
+        document.getElementById('errorEmail').classList.add('mostrar');
+        valido = false;
+      }
+
+      // Mensaje
+      if (mensaje.value.trim() === '') {
+        mensaje.classList.add('error');
+        document.getElementById('errorMensaje').classList.add('mostrar');
+        valido = false;
+      }
+
+      if (!valido) {
+        alertaFinal.innerHTML = '<div class="alerta error">❌ Completa correctamente todos los campos.</div>';
+        setTimeout(() => alertaFinal.innerHTML = '', 3000);
+        return;
+      }
+
+      // Si es válido:
+      alertaFinal.innerHTML = '<div class="alerta exito">✅ ¡Mensaje enviado con éxito!</div>';
+      form.reset();
+      contador.textContent = '0 / 250';
+    });
+  </script>
+
+</body>
+</html>

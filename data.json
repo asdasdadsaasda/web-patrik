@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Patrik", "mensaje": "Consulta general" },
+  { "id": 2, "nombre": "Álvaro", "mensaje": "Quería información del ring" },
+  { "id": 3, "nombre": "Carlos", "mensaje": "Duda técnica" }
+]

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@1,600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Reseñas | Boxeador</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "zalando sans expanded";
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Barra de navegación */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 20px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    main {
+      margin-top: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Contenedores de reseñas */
+    .contenedor {
+      background-color: #111;
+      border: 1px solid #444;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      max-width: 600px;
+      width: 90%;
+      margin-bottom: 25px;
+    }
+
+    .nombre {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .texto {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="./index.html">Portada</a>
+    <a href="./acerca.html">Acerca de</a>
+    <a href="./servicios.html">Servicios</a>
+    <a href="./galeria.html">Galería</a>
+    <a href="./tabla.html">Precios</a>
+    <a href="./contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h1>Reseñas</h1>
+
+    <div class="contenedor">
+      <div class="nombre">Alejandro Álvarez</div>
+      <div class="texto">Excelente técnica y disciplina. Siempre da su máximo en cada entrenamiento.</div>
+    </div>
+
+    <div class="contenedor">
+      <div class="nombre">María López</div>
+      <div class="texto">Muy buen compañero de gimnasio, fuerte y respetuoso. Gran ejemplo de constancia.</div>
+    </div>
+
+    <div class="contenedor">
+      <div class="nombre">Fernando</div>
+      <div class="texto">Gran pelea, muy buena pegada y estrategia. Se nota el esfuerzo detrás de cada combate.</div>
+    </div>
+  </main>
+
+</body>
+</html>
+
